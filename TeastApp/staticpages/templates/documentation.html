@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <title>API Description</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .language-selector {
+            text-align: right;
+            margin: 10px;
+        }
+
+        .language-selector button {
+            margin-left: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, p {
+            text-align: center;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <button onclick="changeLanguage('uk')">Українська</button>
+        <button onclick="changeLanguage('en')">English</button>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 mt-5">
+                <h1 id="api-description">{{ _("API Description") }}</h1>
+                <p id="welcome-message">{{ _("Welcome to the API description page.") }}</p>
+
+                <h2 id="api-usage-instructions">{{ _("API Usage Instructions") }}</h2>
+                <p id="step-1">{{ _("Make a GET request to the endpoint '/api/v1/cars/'.") }}</p>
+                <p id="step-2">{{ _("Use query parameters to filter results (e.g., /api/v1/cars/?brand=Toyota&model=Camry&horse_power=200).") }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            document.getElementById('api-description').innerText = getTranslatedText('API Description', lang);
+            document.getElementById('welcome-message').innerText = getTranslatedText('Welcome to the API description page.', lang);
+            document.getElementById('api-usage-instructions').innerText = getTranslatedText('API Usage Instructions', lang);
+            document.getElementById('step-1').innerText = getTranslatedText('Make a GET request to the endpoint \'/api/v1/cars/\'.', lang);
+            document.getElementById('step-2').innerText = getTranslatedText('Use query parameters to filter results (e.g., /api/v1/cars/?brand=Toyota&model=Camry&horse_power=200).', lang);
+        }
+
+        function getTranslatedText(text, lang) {
+            const translations = {
+                'API Description': {
+                    'uk': 'Опис API',
+                    'en': 'API Description'
+                },
+                'Welcome to the API description page.': {
+                    'uk': 'Ласкаво просимо на сторінку опису API.',
+                    'en': 'Welcome to the API description page.'
+                },
+                'API Usage Instructions': {
+                    'uk': 'Інструкції з використання API',
+                    'en': 'API Usage Instructions'
+                },
+                'Make a GET request to the endpoint \'/api/v1/cars/\'.': {
+                    'uk': 'Виконайте GET-запит на ендпоінт \'/api/v1/cars/\'.',
+                    'en': 'Make a GET request to the endpoint \'/api/v1/cars/\'.'
+                },
+                'Use query parameters to filter results (e.g., /api/v1/cars/?brand=Toyota&model=Camry&horse_power=200).': {
+                    'uk': 'Використовуйте параметри запиту для фільтрації результатів (наприклад, /api/v1/cars/?brand=Toyota&model=Camry&horse_power=200).',
+                    'en': 'Use query parameters to filter results (e.g., /api/v1/cars/?brand=Toyota&model=Camry&horse_power=200).'
+                },
+            };
+
+            return translations[text][lang];
+        }
+    </script>
+</body>
+</html>
